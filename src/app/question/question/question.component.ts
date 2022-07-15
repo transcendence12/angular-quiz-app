@@ -17,8 +17,9 @@ export class QuestionComponent implements OnInit {
   correctAnswer: number = 0;
   incorrectAnswer: number = 0;
   interval$:any;
-  progress:string = "0";
+  progress:number = 0;
   isQuizCompleted:boolean = false;
+  value: number = 0;
 
   constructor(private questionService: QuestionService) { }
 
@@ -98,11 +99,11 @@ export class QuestionComponent implements OnInit {
     this.points=0;
     this.counter=60;
     this.currentQuestion=0;
-    this.progress = '0';
+    this.progress = 0;
   }
 
   getProgressPercent(){
-    this.progress = ((this.currentQuestion/this.questionList.length)*100).toString();
+    this.progress = parseInt(((this.currentQuestion/this.questionList.length)*100).toPrecision(2));
     return this.progress;
   }
 
