@@ -14,7 +14,6 @@ export class WelcomeComponent implements OnInit {
   }
 
   startQuiz() {
-    console.log("click")
     localStorage.setItem('name', this.nameKey.nativeElement.value);
     this.router.navigate(['question'])
   }

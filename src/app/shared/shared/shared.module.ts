@@ -4,6 +4,7 @@ import { MaterialModule } from '../material/material.module';
 import { ChangeBackgroundDirective } from 'src/app/question/question/change-background.directive';
 import { QuestionComponent } from 'src/app/question/question/question.component';
 import { WelcomeComponent } from 'src/app/welcome/welcome/welcome.component';
+import { PrimeNgModule } from '../primeNg/primeNg.module';
 
 
 
@@ -13,8 +14,8 @@ import { WelcomeComponent } from 'src/app/welcome/welcome/welcome.component';
     WelcomeComponent,
     QuestionComponent],
   imports: [
-    CommonModule, MaterialModule
+    CommonModule, MaterialModule, PrimeNgModule
   ],
-  exports: [MaterialModule]
+  exports: [MaterialModule, PrimeNgModule]
 })
 export class SharedModule { }
