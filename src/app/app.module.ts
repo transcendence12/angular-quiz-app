@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './shared/shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from 'src/app/header/header.component';
 import { QuestionService } from './services/question.service';
@@ -20,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     SharedModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
   ],
   providers: [QuestionService],
   bootstrap: [AppComponent]

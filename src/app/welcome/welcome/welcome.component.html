@@ -1,27 +1,53 @@
-<div class="container bg-light py-5">
-    <h1 class="display-5 fw-bold">Welcome to Quiz App</h1>
-    <p class="col-md-8 fs-4">
-      This quiz will contain 9 questions. Each question holds 10 points
-    </p>
-    <h4>Rules:</h4>
-    <ol>
-      <li>Correct question gives you 10 points</li>
-      <li>Incorrect question gives you -10 points</li>
-      <li>You will have 60 seconds to answer each question</li>
-      <li>Refreshing the page will reset the Quiz</li>
-    </ol>
-    <h2 style="text-align:center; font-family:cursive;">All the best!</h2>
-    <div class="p-float-label">
-      <label for="float-input">Enter your name:</label>
-      <input #name id="float-input" pInputText type="text" class="form-control" />
-    </div>
-    <button
-      class="btn"
-      pButton
-      type="button"
-      label="Start the Quiz!"
-      (click)="startQuiz()"
-    >  
-    </button>
-  </div>
-  
+<div class="container bg-light py-5"> 
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <p-card>
+      <ng-template pTemplate="header">
+        <h1 class="display-5 fw-bold">Welcome to Quiz App</h1>
+      </ng-template>
+      <p class="col-md-8 fs-4">
+        This quiz will contain 9 questions. Each question holds 10 points
+      </p>
+      <h4>Rules:</h4>
+      <ol>
+        <li>Correct question gives you 10 points</li>
+        <li>Incorrect question gives you -10 points</li>
+        <li>You will have 60 seconds to answer each question</li>
+        <li>Refreshing the page will reset the Quiz</li>
+      </ol>
+      <h2 style="text-align:center; font-family:cursive;">All the best!</h2>
+    
+      <h5>Enter your name:</h5>
+      <div class=" grid p-fluid">
+        <div class="col-12 md:col-4">
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+            <input
+              name="user"
+              [(ngModel)]="user.name"
+              #name="ngModel"
+              required
+              id="username" 
+              pInputText 
+              type="text" 
+              placeholder="Your name" 
+              class="form-control ng-invalid"
+              aria-describedby="username2-help"
+            />
+                
+          </div>
+          <small *ngIf="name.touched && name.invalid" id="username2-help" class="p-error block">Username is required</small>
+        </div>
+      </div>
+      <button
+        class="p-button"
+        pButton
+        type="submit"
+        label="Start the Quiz!"
+        
+        [disabled]="form.invalid"
+      >  
+      </button>
+    </p-card>
+  </form>
+</div>
+  <!-- button (click)="startQuiz()" -->
