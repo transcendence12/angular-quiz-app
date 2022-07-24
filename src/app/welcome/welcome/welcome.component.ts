@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import IUser from 'src/app/models/IUser';
 
@@ -10,7 +11,7 @@ import IUser from 'src/app/models/IUser';
 })
 export class WelcomeComponent implements OnInit {
 
-  @ViewChild('name') nameKey!: ElementRef;
+  @ViewChild('name', {read: ElementRef}) nameKey!: ElementRef;
 
   user: IUser = {
     name: ''
@@ -21,9 +22,12 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    localStorage.setItem('name', this.nameKey.nativeElement.value);
-    this.router.navigate(['question'])
+  onSubmit(form: NgForm) {
+    if((localStorage.getItem('name') === null) && (this.nameKey.nativeElement?.value)){
+      localStorage.setItem('name', this.nameKey.nativeElement?.value);
+      // console.log(this.nameKey)
+      this.router.navigate(['question']);
+    }
   }
 
 }

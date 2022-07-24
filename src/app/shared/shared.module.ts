@@ -5,6 +5,7 @@ import { QuestionComponent } from 'src/app/question/question/question.component'
 import { WelcomeComponent } from 'src/app/welcome/welcome/welcome.component';
 import { PrimeNgModule } from './primeNg/primeNg.module';
 import { FormsModule } from '@angular/forms';
+import { NotFoundComponentComponent } from '../not-found-component/not-found-component.component';
 
 
 
@@ -12,7 +13,9 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     ChangeBackgroundDirective,
     WelcomeComponent,
-    QuestionComponent],
+    QuestionComponent,
+    NotFoundComponentComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

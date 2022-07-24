@@ -1,0 +1,26 @@
+.navbar {
+    min-height: 20vh;
+    background: #1976d2;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 2rem;
+    &__container {
+
+        &--link {
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            .logo-img {
+                width: 3.125rem;
+            }
+            .text-uppercase {
+                text-transform: uppercase;
+                color: #fff;
+                font-size: 1.6rem;
+            }
+        }
+    }
+}
