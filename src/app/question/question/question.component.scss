@@ -1,19 +1,66 @@
-.card {
+@import '../../../assets/styles/variables';
+.container {
+  .card {
     max-width: 800px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 0.75rem;
+    color: #212121;
+
+    .card__header{
+      text-align: center;
+      margin: 0 auto;
+      margin-bottom: $Margin-bottom-xl;
+
+      &--welcome {
+        font-size: 1.5rem;
+        font-weight: 300;
+
+        .card-title {
+          margin-bottom: $Margin-bottom-m;
+        }
+      }
+    }
+    .score-group>*{
+      margin-bottom: $Margin-bottom-sm;
+    }
+    .score-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .progress {
+      margin-bottom: $Margin-bottom-xxl;
+    }
+    .question {
+      .question-paragraph {
+        font-weight: 500;
+        font-size: 1.1rem;
+      }
+    }
+
+    ol {
+      padding: 0;
+
+      li {
+        list-style-type: none;
+        cursor: pointer;
+        margin: 10px 0;
+
+        .item {
+          background-color: $Module-icons-6-hex;
+          border-radius: 7px;
+        }
+      }
+      li .card:hover {
+        border: 1px solid $Module-icons-2-hex;
+      }
+    }
+
+    .btn-group{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: $Margin-bottom-xxl;
+    }
   }
-  .item {
-    background-color: rgb(196, 196, 237);
-  }
-  li {
-    list-style-type: none;
-    cursor: pointer;
-    margin: 10px 0;
-  }
-  li .card:hover {
-    border: 1px solid blue;
-  }
-  ol {
-    padding: 0;
-  }
+}

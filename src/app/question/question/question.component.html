@@ -1,29 +1,21 @@
 <div class="container">
     <div class="card">
-      <div class="d-flex justify-content-between p-3">
-        <div class="image">
-          <img
-            src="https://img.icons8.com/color/96/000000/angularjs.png"
-            width="90"
-            class="d-inline-block align-top"
-            alt="Logo"
-          />
-        </div>
-        <div class="quiz-header">
-          <h4>Angular & Typescript Quiz</h4>
+      <div class="card__header">
+        <div class="card__header--welcome">
+          <h4 class="card-title">Angular & Typescript Quiz</h4>
           <span>Welcome {{ name }}</span>
         </div>
       </div>
       <ng-container *ngIf="!isQuizCompleted">
-        <div class="d-flex justify-content-around py-3">
+        <div class="score-group">
           <div class="score">
-            <h5>{{points}} Points</h5>
+            <p>{{points}} Points</p>
           </div>
           <div class="question-remain">
             <span>Question {{currentQuestion+1}} of {{questionList.length}}</span>
           </div>
           <div class="timer">
-            <h5>{{counter}} seconds ⏲️</h5>
+            <p>{{counter}} seconds ⏲️</p>
           </div>
         </div>
         <div class="progress">
@@ -32,13 +24,12 @@
             role="progressbar"
             [ngStyle]="{'width':progress+'%'}"
             mode="determinate" 
-            
             [value]="progress">
           </p-progressBar>
         </div>
         <div class="question">
           <div class="card">
-            <h3>{{ questionList[currentQuestion]?.questionText }}</h3>
+            <p class="question-paragraph">{{ questionList[currentQuestion]?.questionText }}</p>
           </div>
         </div>
         <div class="options">
@@ -48,14 +39,14 @@
             </li>
           </ol>
         </div>
-        <div class="d-flex justify-content-between">
-          <button [disabled]='currentQuestion===0' class="btn" (click)=previousQuestion()>
-            <i aria-hidden="true">⬅️</i>
-          </button>
-          <button (click)='resetQuiz()' class="btn">🔄</button>
-          <button [disabled]='currentQuestion===questionList.length-1' class="btn" (click)=nextQuestion()>
-            <i aria-hidden="true">➡️</i>
-          </button>
+        <div class="btn-group">
+          <p-button type="button" [disabled]='currentQuestion===0' class="btn" (click)=previousQuestion()>
+            <i aria-hidden="true" class="pi pi-arrow-left"></i>
+          </p-button>
+          <p-button type="button" (click)='resetQuiz()' class="btn"><i aria-hidden="true" class="pi pi-refresh"></i></p-button>
+          <p-button type="button" [disabled]='currentQuestion===questionList.length-1' class="btn" (click)=nextQuestion()>
+            <i aria-hidden="true" class="pi pi-arrow-right"></i>
+          </p-button>
         </div>
       </ng-container>
   

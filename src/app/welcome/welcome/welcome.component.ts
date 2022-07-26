@@ -23,7 +23,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if((localStorage.getItem('name') === null) && (this.nameKey.nativeElement?.value)){
+    if(this.nameKey.nativeElement?.value){
       localStorage.setItem('name', this.nameKey.nativeElement?.value);
       // console.log(this.nameKey)
       this.router.navigate(['question']);
