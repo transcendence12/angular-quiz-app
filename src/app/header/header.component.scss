@@ -1,6 +1,9 @@
+@import '../../assets/styles/_variables.scss';
+
 .navbar {
-    min-height: 20vh;
-    background: #1976d2;
+    min-height: 10vh;
+    // background: #1976d2;
+    background-color: $Module-icons-2-hex;
     display: flex;
     justify-content: flex-start;
     align-items: center;

@@ -1,4 +1,11 @@
 @import '~primeicons/primeicons.css';
 @import '~primeng/resources/themes/lara-light-blue/theme.css';
 @import '~primeng/resources/primeng.min.css';
+@import '_variables.scss';
+
+.prime__card.p-card {
+            
+    background: $Module-icons-6-hex;
+    
+}
 
