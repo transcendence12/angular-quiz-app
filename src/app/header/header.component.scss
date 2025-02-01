@@ -1,4 +1,4 @@
-@import '../../assets/styles/_variables.scss';
+@use '../../assets/styles/variables' as *;
 
 .navbar {
     min-height: 10vh;

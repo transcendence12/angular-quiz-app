@@ -1,5 +1,7 @@
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
-@import "primeicons/primeicons.css";
+/* SASS modules first */
+@use "assets/styles/variables" as *;
+@use "assets/styles/prime-ng" as *;
 
-// ... rest of your global styles 
+/* Global styles */
+
+// ... rest of your global styles

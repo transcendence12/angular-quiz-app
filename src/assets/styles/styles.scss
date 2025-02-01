@@ -1,11 +1,12 @@
-@import '_prime-ng';
-@import '_variables.scss';
+@use 'prime-ng' as *;
+@use 'variables' as *;
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html, body { 
     width: 100%;
     min-height: 100vh;

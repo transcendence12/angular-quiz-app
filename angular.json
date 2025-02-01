@@ -20,18 +20,17 @@
             "outputPath": "dist/quiz-app",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "./node_modules/primeicons/primeicons.css",
-              "./node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "./node_modules/primeng/resources/primeng.min.css",
-              "src/assets/styles/styles.scss"
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.css",
+              "node_modules/primeicons/primeicons.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -72,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "quiz-app:build:production"
+              "buildTarget": "quiz-app:build:production"
             },
             "development": {
-              "browserTarget": "quiz-app:build:development"
+              "buildTarget": "quiz-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,14 +82,14 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "quiz-app:build"
+            "buildTarget": "quiz-app:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
@@ -99,12 +98,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/styles/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

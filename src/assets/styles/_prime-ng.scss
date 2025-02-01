@@ -1,13 +1,9 @@
-@import '~primeicons/primeicons.css';
-@import '~primeng/resources/themes/lara-light-blue/theme.css';
-@import '~primeng/resources/primeng.min.css';
-@import '_variables.scss';
+@use 'variables' as vars;
 
 .prime__card.p-card {
-            
-    background: $Module-icons-6-hex;
-    
+    background: vars.$Module-icons-6-hex;
 }
+
 .pi {
     font-size: 1.5rem;
 }
