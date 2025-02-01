@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { QuestionComponent } from './question/question/question.component';
-import { WelcomeComponent } from './welcome/welcome/welcome.component';
-import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
+import { Routes } from '@angular/router';
 
-
-const routes: Routes = [
-  {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-  {path:'welcome', component: WelcomeComponent},
-  {path:'question', component: QuestionComponent},
-  {path: '**', component: NotFoundComponentComponent}
+export const routes: Routes = [
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  {
+    path: 'welcome',
+    loadComponent: () => import('./welcome/welcome/welcome.component')
+      .then(m => m.WelcomeComponent)
+  },
+  {
+    path: 'question',
+    loadComponent: () => import('./question/question/question.component')
+      .then(m => m.QuestionComponent)
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./not-found-component/not-found-component.component')
+      .then(m => m.NotFoundComponentComponent)
+  }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

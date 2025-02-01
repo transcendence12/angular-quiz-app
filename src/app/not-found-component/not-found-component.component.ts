@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-not-found-component',
   templateUrl: './not-found-component.component.html',
-  styleUrls: ['./not-found-component.component.scss']
+  styleUrls: ['./not-found-component.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
-export class NotFoundComponentComponent implements OnInit {
+export class NotFoundComponentComponent {
 
   constructor() { }
 

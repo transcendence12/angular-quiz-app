@@ -1,12 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { interval } from 'rxjs';
 import { QuestionService } from 'src/app/services/question.service';
-
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ButtonModule } from 'primeng/button';
+import { ChangeBackgroundDirective } from './change-background.directive';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.scss']
+  styleUrls: ['./question.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ProgressBarModule,
+    ButtonModule,
+    ChangeBackgroundDirective,
+    JsonPipe
+  ]
 })
 export class QuestionComponent implements OnInit {
   public name: string = '';
