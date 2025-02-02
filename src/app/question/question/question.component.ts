@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { interval } from 'rxjs';
@@ -7,6 +7,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ButtonModule } from 'primeng/button';
 import { ChangeBackgroundDirective } from './change-background.directive';
 import { JsonPipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-question',
@@ -16,13 +17,18 @@ import { JsonPipe } from '@angular/common';
   imports: [
     CommonModule,
     FormsModule,
-    ProgressBarModule,
-    ButtonModule,
     ChangeBackgroundDirective,
+    RouterModule,
+    ButtonModule,
+    ProgressBarModule
+  ] as const,
+  providers: [
     JsonPipe
   ]
 })
 export class QuestionComponent implements OnInit {
+  private questionService = inject(QuestionService);
+
   public name: string = '';
   public questionList: any = [];
   public currentQuestion: number = 0;
@@ -35,7 +41,10 @@ export class QuestionComponent implements OnInit {
   isQuizCompleted:boolean = false;
   value: number = 0;
 
-  constructor(private questionService: QuestionService) { }
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() { }
 
   ngOnInit(): void {
     this.name = localStorage.getItem('name')!;

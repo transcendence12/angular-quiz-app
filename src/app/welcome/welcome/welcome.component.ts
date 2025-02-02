@@ -1,11 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, inject, viewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import IUser from 'src/app/models/IUser';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { CommonModule } from '@angular/common';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
   selector: 'app-welcome',
@@ -13,28 +15,36 @@ import { CardModule } from 'primeng/card';
   styleUrls: ['./welcome.component.scss'],
   standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
+    CommonModule,
+    FormsModule,
     ButtonModule,
-    CardModule
-  ]
+    CardModule,
+    RouterModule,
+    ProgressBarModule
+] as const
 })
 export class WelcomeComponent implements OnInit {
+  private router = inject(Router);
 
-  @ViewChild('name', {read: ElementRef}) nameKey!: ElementRef;
+
+  readonly nameKey = viewChild.required('name', { read: ElementRef });
 
   user: IUser = {
     name: ''
   };
 
-  constructor(private router: Router) { }
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
-    if(this.nameKey.nativeElement?.value){
-      localStorage.setItem('name', this.nameKey.nativeElement?.value);
+    const nameKey = this.nameKey();
+    if(nameKey.nativeElement?.value){
+      localStorage.setItem('name', nameKey.nativeElement?.value);
       // console.log(this.nameKey)
       this.router.navigate(['question']);
     }

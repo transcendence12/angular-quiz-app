@@ -1,43 +1,45 @@
-<div class="container__welcome"> 
+<div class="container__welcome">
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <p-card styleClass="prime__card">
-        <ng-template pTemplate="header">
-          <h1 class="prime__card--header">Welcome to Quiz App</h1>
-        </ng-template>
-        <p class="prime__card--paragraph">
-          This quiz will contain 9 questions. Each question holds 10 points
-        </p>
+      <ng-template pTemplate="header">
+        <h1 class="prime__card--header">Welcome to Quiz App</h1>
+      </ng-template>
+      <p class="prime__card--paragraph">
+        This quiz will contain 9 questions. Each question holds 10 points
+      </p>
+      <div class="center">
+        <h4 class="quiz-rules">Rules:</h4>
         <div class="center">
-          <h4 class="quiz-rules">Rules:</h4>
-          <div class="center">
-            <ol>
-              <li>Correct question gives you 10 points</li>
-              <li>Incorrect question gives you -10 points</li>
-              <li>You will have 60 seconds to answer each question</li>
-              <li>Refreshing the page will reset the Quiz</li>
-            </ol>
-          </div>
-          <p class="uppercase">All the best!</p>
-          <h5 class="login-label">Enter your name:</h5>
-          <div class="grid p-fluid">
-            <div class="col-12 md:col-4">
-              <div class="p-inputgroup start">
-                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                <input
-                  name="user"
-                  [(ngModel)]="user.name"
-                  #name="ngModel"
-                  required
-                  id="username" 
-                  pInputText 
-                  type="text" 
-                  placeholder="Your name" 
-                  class="form-control ng-invalid"
-                  aria-describedby="username2-help"
+          <ol>
+            <li>Correct question gives you 10 points</li>
+            <li>Incorrect question gives you -10 points</li>
+            <li>You will have 60 seconds to answer each question</li>
+            <li>Refreshing the page will reset the Quiz</li>
+          </ol>
+        </div>
+        <p class="uppercase">All the best!</p>
+        <h5 class="login-label">Enter your name:</h5>
+        <div class="grid p-fluid">
+          <div class="col-12 md:col-4">
+            <div class="p-inputgroup start">
+              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input
+                name="user"
+                [(ngModel)]="user.name"
+                #name="ngModel"
+                required
+                id="username"
+                pInputText
+                type="text"
+                placeholder="Your name"
+                class="form-control ng-invalid"
+                aria-describedby="username2-help"
                 />
-                    
+
               </div>
-              <small *ngIf="name.touched && name.invalid" id="username2-help" class="p-error block">Username is required</small>
+              @if (name.touched && name.invalid) {
+                <small id="username2-help" class="p-error block">Username is required</small>
+              }
             </div>
           </div>
           <button
@@ -45,14 +47,14 @@
             pButton
             type="submit"
             label="Start the Quiz!"
-            
+
             [disabled]="form.invalid"
-          >  
+            >
           </button>
         </div>
-    
 
-    </p-card>
-  </form>
-</div>
+
+      </p-card>
+    </form>
+  </div>
   <!-- button (click)="startQuiz()" -->
