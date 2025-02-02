@@ -1,70 +1,72 @@
 <div class="container">
-    <div class="card">
-      <div class="card__header">
-        <div class="card__header--welcome">
-          <h4 class="card-title">Angular & Typescript Quiz</h4>
-          <span>Welcome {{ name }}</span>
+  <div class="card">
+    <div class="card__header">
+      <div class="card__header--welcome">
+        <h4 class="card-title">Angular & Typescript Quiz</h4>
+        <span>Welcome {{ name }}</span>
+      </div>
+    </div>
+    @if (!isQuizCompleted) {
+      <div class="score-group">
+        <div class="score">
+          <p>{{points}} Points</p>
+        </div>
+        <div class="question-remain">
+          <span>Question {{currentQuestion+1}} of {{questionList.length}}</span>
+        </div>
+        <div class="timer">
+          <p>{{counter}} seconds ⏲️</p>
         </div>
       </div>
-      <ng-container *ngIf="!isQuizCompleted">
-        <div class="score-group">
-          <div class="score">
-            <p>{{points}} Points</p>
-          </div>
-          <div class="question-remain">
-            <span>Question {{currentQuestion+1}} of {{questionList.length}}</span>
-          </div>
-          <div class="timer">
-            <p>{{counter}} seconds ⏲️</p>
-          </div>
+      <div class="progress">
+        <p-progressBar
+          class="progress-bar"
+          role="progressbar"
+          [ngStyle]="{'width':progress+'%'}"
+          mode="determinate"
+          [value]="progress">
+        </p-progressBar>
+      </div>
+      <div class="question">
+        <div class="card">
+          <p class="question-paragraph">{{ questionList[currentQuestion]?.questionText }}</p>
         </div>
-        <div class="progress">
-          <p-progressBar
-            class="progress-bar"
-            role="progressbar"
-            [ngStyle]="{'width':progress+'%'}"
-            mode="determinate" 
-            [value]="progress">
-          </p-progressBar>
-        </div>
-        <div class="question">
-          <div class="card">
-            <p class="question-paragraph">{{ questionList[currentQuestion]?.questionText }}</p>
-          </div>
-        </div>
-        <div class="options">
-          <ol *ngFor='let option of questionList[currentQuestion]?.options'>
+      </div>
+      <div class="options">
+        @for (option of questionList[currentQuestion]?.options; track option) {
+          <ol>
             <li (click)='answer(currentQuestion+1, option)'>
               <div appChangeBackground [isCorrect]="option.correct" class="card item">{{option.text}}</div>
             </li>
           </ol>
+        }
+      </div>
+      <div class="btn-group">
+        <p-button type="button" [disabled]='currentQuestion===0' class="btn" (click)=previousQuestion()>
+          <i aria-hidden="true" class="pi pi-arrow-left"></i>
+        </p-button>
+        <button type="button" (click)='resetQuiz()' class="btn"><i aria-hidden="true" class="pi pi-refresh"></i></button>
+        <button type="button" [disabled]='currentQuestion===questionList.length-1' class="btn" (click)=nextQuestion()>
+          <i aria-hidden="true" class="pi pi-arrow-right"></i>
+        </button>
+      </div>
+    }
+
+    @if (isQuizCompleted) {
+      <div class="row d-flex justify-content-between">
+        <img style="width: 50%;" class="img-fluid col-sm-12 mx-auto" src="https://cdn-icons.flaticon.com/png/512/2454/premium/2454288.png?token=exp=1655470201~hmac=c97b99c48c8cc977e29adfb8b2110ef6" alt="Happy successful people image">
+        <div class="result text-center col-md-6 col-sm-12">
+          <h3>Congratulations!!!</h3>
+          <h4>You have completed the Quiz!</h4>
+          <h5>Below is your result:</h5>
+          <p>Total Question Attempted: {{questionList.length}}</p>
+          <p>Total Correct Answers: {{correctAnswer}}</p>
+          <p>Total Incorrect Answers: {{incorrectAnswer}}</p>
+          <p>Your score: {{points}} Points</p>
         </div>
-        <div class="btn-group">
-          <p-button type="button" [disabled]='currentQuestion===0' class="btn" (click)=previousQuestion()>
-            <i aria-hidden="true" class="pi pi-arrow-left"></i>
-          </p-button>
-          <p-button type="button" (click)='resetQuiz()' class="btn"><i aria-hidden="true" class="pi pi-refresh"></i></p-button>
-          <p-button type="button" [disabled]='currentQuestion===questionList.length-1' class="btn" (click)=nextQuestion()>
-            <i aria-hidden="true" class="pi pi-arrow-right"></i>
-          </p-button>
-        </div>
-      </ng-container>
-  
-      <ng-container *ngIf="isQuizCompleted">
-        <div class="row d-flex justify-content-between">
-          <img style="width: 50%;" class="img-fluid col-sm-12 mx-auto" src="https://cdn-icons.flaticon.com/png/512/2454/premium/2454288.png?token=exp=1655470201~hmac=c97b99c48c8cc977e29adfb8b2110ef6" alt="Happy successful people image">
-          <div class="result text-center col-md-6 col-sm-12">
-            <h3>Congratulations!!!</h3>
-            <h4>You have completed the Quiz!</h4>
-            <h5>Below is your result:</h5>
-            <p>Total Question Attempted: {{questionList.length}}</p>
-            <p>Total Correct Answers: {{correctAnswer}}</p>
-            <p>Total Incorrect Answers: {{incorrectAnswer}}</p>
-            <p>Your score: {{points}} Points</p>
-          </div>
-        </div>
-      </ng-container>
-    </div>
+      </div>
+    }
   </div>
-  <pre>{{questionList | json}}</pre>
-  
+</div>
+<pre>{{questionList | json}}</pre>
+
