@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { PrimeNG } from 'primeng/config';
-import { appConfig } from './app.config';
 
 @Component({
   selector: 'app-root',
