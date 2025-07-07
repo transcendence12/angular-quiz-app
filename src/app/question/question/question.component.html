@@ -49,16 +49,32 @@
     }
 
     @if (isQuizCompleted) {
-      <div class="row d-flex justify-content-between">
-        <img style="width: 50%;" class="img-fluid col-sm-12 mx-auto" src="https://cdn-icons.flaticon.com/png/512/2454/premium/2454288.png?token=exp=1655470201~hmac=c97b99c48c8cc977e29adfb8b2110ef6" alt="Happy successful people image">
-        <div class="result text-center col-md-6 col-sm-12">
-          <h3>Congratulations!!!</h3>
-          <h4>You have completed the Quiz!</h4>
-          <h5>Below is your result:</h5>
-          <p>Total Question Attempted: {{questionList.length}}</p>
-          <p>Total Correct Answers: {{correctAnswer}}</p>
-          <p>Total Incorrect Answers: {{incorrectAnswer}}</p>
-          <p>Your score: {{points}} Points</p>
+      <div class="completion-screen">
+        <div class="completion-content">
+          <div class="completion-image">
+            <div class="success-icon">
+              <i class="pi pi-check-circle" style="font-size: 5rem; color: #4CAF50;"></i>
+            </div>
+          </div>
+          <div class="result text-center">
+            <h3>🎉 Congratulations!!!</h3>
+            <h4>You have completed the Quiz!</h4>
+            <h5>Below is your result:</h5>
+            <div class="result-stats">
+              <p><strong>Total Questions Attempted:</strong> {{questionList.length}}</p>
+              <p><strong>Total Correct Answers:</strong> {{correctAnswer}}</p>
+              <p><strong>Total Incorrect Answers:</strong> {{incorrectAnswer}}</p>
+              <p class="final-score"><strong>Your Score:</strong> {{points}} Points</p>
+            </div>
+            <div class="completion-actions">
+              <p-button 
+                icon="pi pi-refresh" 
+                label="Take Quiz Again" 
+                (onClick)="resetQuiz()" 
+                styleClass="p-button-success">
+              </p-button>
+            </div>
+          </div>
         </div>
       </div>
     }
