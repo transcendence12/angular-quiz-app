@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="options">
-        @for (option of questionList[currentQuestion]?.options; track option) {
+        @for (option of questionList[currentQuestion]?.options; track trackOption($index, option)) {
           <ol>
             <li (click)='answer(currentQuestion+1, option)'>
               <div appChangeBackground [isCorrect]="option.correct" class="card item">{{option.text}}</div>

@@ -148,4 +148,9 @@ export class QuestionComponent implements OnInit {
     return this.progress;
   }
 
+  trackOption(index: number, option: any): string {
+    // Create a unique identifier combining question index, option index, and option text
+    return `${this.currentQuestion}-${index}-${option.text}`;
+  }
+
 }
