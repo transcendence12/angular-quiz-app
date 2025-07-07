@@ -2,6 +2,9 @@
 
 A modern, interactive quiz application built with Angular 19 and PrimeNG, featuring TypeScript and Angular-related questions. This project demonstrates modern Angular development practices using standalone components, signals, and the latest Angular features.
 
+## Demo
+https://angular-quiz-app-cyan.vercel.app/welcome
+
 ## 🚀 Features
 
 - **Interactive Quiz Interface**: Clean, responsive design with PrimeNG components
