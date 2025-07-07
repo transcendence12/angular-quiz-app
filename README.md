@@ -1,6 +1,6 @@
 # QuizApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.2. Currently, I use [Angular CLI](https://github.com/angular/angular-cli) version 19, the same with PrimeNg for styling.
 
 ## Run the project
 To run the project, dependencies must first be installed: `npm install`.
