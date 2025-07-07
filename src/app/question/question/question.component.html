@@ -42,13 +42,9 @@
         }
       </div>
       <div class="btn-group">
-        <p-button type="button" [disabled]='currentQuestion===0' class="btn" (click)=previousQuestion()>
-          <i aria-hidden="true" class="pi pi-arrow-left"></i>
-        </p-button>
-        <button type="button" (click)='resetQuiz()' class="btn"><i aria-hidden="true" class="pi pi-refresh"></i></button>
-        <button type="button" [disabled]='currentQuestion===questionList.length-1' class="btn" (click)=nextQuestion()>
-          <i aria-hidden="true" class="pi pi-arrow-right"></i>
-        </button>
+        <p-button icon="pi pi-arrow-left" [disabled]="currentQuestion===0" (onClick)="previousQuestion()" styleClass="btn"></p-button>
+        <p-button icon="pi pi-refresh" (onClick)="resetQuiz()" styleClass="btn"></p-button>
+        <p-button icon="pi pi-arrow-right" [disabled]="currentQuestion===questionList.length-1" (onClick)="nextQuestion()" styleClass="btn"></p-button>
       </div>
     }
 
