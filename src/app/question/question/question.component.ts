@@ -59,35 +59,43 @@ export class QuestionComponent implements OnInit {
   }
 
   nextQuestion() {
-    this.currentQuestion++;
+    if(this.currentQuestion < this.questionList.length - 1) {
+      this.currentQuestion++;
+    }
   }
   previousQuestion() {
-    this.currentQuestion--;
+    if(this.currentQuestion > 0) {
+      this.currentQuestion--;
+    }
   }
 
   answer(currentQuestionNr: number, option: any) {
-    if(currentQuestionNr === this.questionList.length){
-      this.isQuizCompleted === true;
-      this.stopCounter();
-    }
-
     if (option.correct) {
       this.points += 10;
       this.correctAnswer++;
       setTimeout(()=>{
         this.currentQuestion++;
-        this.resetCounter();
         this.getProgressPercent();
+        this.checkQuizCompletion();
       },1000);
       
     } else {
       setTimeout(()=>{
         this.currentQuestion++;
         this.incorrectAnswer++;
-        this.resetCounter();
         this.getProgressPercent();
+        this.checkQuizCompletion();
       },1000);
       this.points -= 10;
+    }
+  }
+
+  checkQuizCompletion() {
+    if(this.currentQuestion >= this.questionList.length){
+      this.isQuizCompleted = true;
+      this.stopCounter();
+    } else {
+      this.resetCounter();
     }
   }
 
@@ -96,13 +104,18 @@ export class QuestionComponent implements OnInit {
       this.counter--;
       if(this.counter===0){
         this.currentQuestion++;
-        this.counter = 60;
         this.points-=10;
+        this.incorrectAnswer++;
+        this.getProgressPercent();
+        this.checkQuizCompletion();
       }
     })
+    // Set timeout for total quiz duration (9 questions × 60 seconds = 540 seconds)
     setTimeout(()=>{
-      this.interval$.unsubscribe();
-    },600000)
+      if(this.interval$) {
+        this.interval$.unsubscribe();
+      }
+    },540000)
   };
 
   stopCounter(){
@@ -123,10 +136,15 @@ export class QuestionComponent implements OnInit {
     this.counter=60;
     this.currentQuestion=0;
     this.progress = 0;
+    this.correctAnswer = 0;
+    this.incorrectAnswer = 0;
+    this.isQuizCompleted = false;
   }
 
   getProgressPercent(){
-    this.progress = parseInt(((this.currentQuestion/this.questionList.length)*100).toPrecision(2));
+    // Ensure progress doesn't exceed 100%
+    const progressValue = Math.min((this.currentQuestion/this.questionList.length)*100, 100);
+    this.progress = parseInt(progressValue.toPrecision(2));
     return this.progress;
   }
 

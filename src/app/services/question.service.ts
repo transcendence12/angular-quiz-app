@@ -7,10 +7,6 @@ import { HttpClient } from '@angular/common/http';
 export class QuestionService {
   private http = inject(HttpClient);
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
-
-
   constructor() { }
 
   getQuestionJson() {
